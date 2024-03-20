@@ -1,0 +1,52 @@
+ 
+ 
+ body {
+    /* background-image: url('../seedling.jpg');
+    background-size: cover; */
+
+   background: rgb(33, 31, 35) top/cover url("../garden.jpg") no-repeat;
+    /* background-size: 5%; */
+    /* height: 100%; */
+    /* display: grid; */
+    min-height: 100vh;
+
+ }
+
+
+
+ main {
+   display: grid;
+   grid-template-columns: 1fr 2fr 1fr;
+   grid-template-rows: 1fr 2fr 2fr;
+   grid-template-areas: "row1 row1 row1"
+                        ". header ."
+                        ". form .";
+
+ }
+
+form {
+   grid-area: form;
+}
+
+#row1 {
+   grid-area: row1;
+   height: 6rem;
+}
+
+
+ h1 {
+   grid-area: header;
+   font-family: "BioRhyme", Arial, Helvetica, sans-serif;
+    text-align: center;
+    text-transform: capitalize;
+    font-size: 1.75rem;
+    color: rgb(250, 246, 231)
+ }
+
+ @media only screen and (max-width: 768px) {
+   body {
+      
+   background: rgb(33, 31, 35) center/cover url("../seedling.jpg") no-repeat;
+   min-height: 100vh;
+   }
+ } 

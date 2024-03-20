@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="f8099902-1bdf-4d5d-9995-d06e35091ddd" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="Interface" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectId" id="2c5PTNnzqo7ll61sgRHl5vNVEAb" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/Student/workspace/personal/ok2plantProject",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Student\workspace\toby-gershon-student-code\ok2plantProject" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Student\workspace\toby-gershon-student-code\ok2plantProject\src\test" />
+      <recent name="C:\Users\Student\workspace\toby-gershon-student-code\ok2plantProject\tests" />
+      <recent name="C:\Users\Student\workspace\toby-gershon-student-code\ok2plantProject\src\main\java\toby" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="src.main" />
+      <recent name="src" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Application">
+    <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="toby.Application" />
+      <module name="ok2plantProject" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="toby.Service.Models.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ForecasterTests.check_if_too_hot_returns_correct" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ok2plantProject" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="src.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="src.test" />
+      <option name="MAIN_CLASS_NAME" value="src.test.ForecasterTests" />
+      <option name="METHOD_NAME" value="check_if_too_hot_returns_correct" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ForecasterTests.getBestPlantingDayWithRainForecast_returns_correct_day_starting_from_firstokDay" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ok2plantProject" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="src.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="src.test" />
+      <option name="MAIN_CLASS_NAME" value="src.test.ForecasterTests" />
+      <option name="METHOD_NAME" value="getBestPlantingDayWithRainForecast_returns_correct_day_starting_from_firstokDay" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ForecasterTests.getBestPlantingDayWithRainForecast_returns_correct_day_starting_from_index_zero" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ok2plantProject" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="src.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="src.test" />
+      <option name="MAIN_CLASS_NAME" value="src.test.ForecasterTests" />
+      <option name="METHOD_NAME" value="getBestPlantingDayWithRainForecast_returns_correct_day_starting_from_index_zero" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ForecasterTests.isRainy_is_accurate_for_all_timeframes" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ok2plantProject" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="src.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="src.test" />
+      <option name="MAIN_CLASS_NAME" value="src.test.ForecasterTests" />
+      <option name="METHOD_NAME" value="isRainy_is_accurate_for_all_timeframes" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Application" />
+        <item itemvalue="JUnit.ForecasterTests.check_if_too_hot_returns_correct" />
+        <item itemvalue="JUnit.ForecasterTests.isRainy_is_accurate_for_all_timeframes" />
+        <item itemvalue="JUnit.ForecasterTests.getBestPlantingDayWithRainForecast_returns_correct_day_starting_from_firstokDay" />
+        <item itemvalue="JUnit.ForecasterTests.getBestPlantingDayWithRainForecast_returns_correct_day_starting_from_index_zero" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="JUnit">
+        <watch expression="newLocation.weatherForecastList" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/ok2plantProject$Application.ic" NAME="Application Coverage Results" MODIFIED="1708395806895" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
+</project>
