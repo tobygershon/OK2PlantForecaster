@@ -1,11 +1,9 @@
  
  
  body {
-    /* background-image: url('../seedling.jpg');
-    background-size: cover; */
 
-   background: rgb(33, 31, 35) top/cover url("../garden.jpg") no-repeat;
-    /* background-size: 5%; */
+   background: rgb(81, 77, 86) top/cover no-repeat url("../../../../resources/garden.jpg");
+   /* background-size: 5%; */
     /* height: 100%; */
     /* display: grid; */
     min-height: 100vh;
@@ -46,7 +44,7 @@ form {
  @media only screen and (max-width: 768px) {
    body {
       
-   background: rgb(33, 31, 35) center/cover url("../seedling.jpg") no-repeat;
+   background: rgb(33, 31, 35) center/cover url("../../../../resources/seedling.jpg") no-repeat;
    min-height: 100vh;
    }
  } 

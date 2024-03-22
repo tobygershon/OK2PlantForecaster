@@ -36,44 +36,18 @@ public class Forecaster {
     //methods
 
 
-    // method to calculate and return list of worst case scenario low temps
-    //Moved to Location as derived property
-
-//    public List<Day> calculateWorstCaseLowTemps(Location location) {
-//        List<Day> worstCaseTempList = new ArrayList<>();
-//
-//        for (int i = 0; i < MOST_RELIABLE_FORECAST_DAYS; i++) {
-//            double worstCaseLow = location.getWeatherForecastList().getDays()[i].getTempmin() - TEMP_DELTA_MOST_RELIABLE;
-//            worstCaseTempList.add(location.getWeatherForecastList().getDays()[i]);
-//            worstCaseTempList.get(i).setTempmin(worstCaseLow);
-//        }
-//        for (int i = MOST_RELIABLE_FORECAST_DAYS; i < MEDIUM_RELIABLE_FORECAST_DAYS; i++) {
-//            double worstCaseTemp = location.getWeatherForecastList().getDays()[i].getTempmin() - TEMP_DELTA_MEDIUM_RELIABLE;
-//            worstCaseTempList.add(location.getWeatherForecastList().getDays()[i]);
-//            worstCaseTempList.get(i).setTempmin(worstCaseTemp);
-//        }
-//        for (int i = MEDIUM_RELIABLE_FORECAST_DAYS; i < LEAST_RELIABLE_FORECAST_DAYS; i++) {
-//            double worstCaseTemp = location.getWeatherForecastList().getDays()[i].getTempmin() - TEMP_DELTA_LEAST_RELIABLE;
-//            worstCaseTempList.add(location.getWeatherForecastList().getDays()[i]);
-//            worstCaseTempList.get(i).setTempmin(worstCaseTemp);
-//        }
-//
-//        return worstCaseTempList;
-//    }
-
-
     // 3 methods to get index of first ok day for Most, Medium , and least tolerant
     private int getFirstOkDayMostTolerant(Location newLocation) {
-        //make worst case low list
-        List<Day> worstCaseLows = new ArrayList<>();
-        worstCaseLows = newLocation.getWorstCaseLowTemps();
+        //get worst case low list
+
+        List<Double> worstCaseLows = newLocation.getWorstCaseLowsList();
 
         int firstOkDayMostTolerant = 0;
 
         //find index of first ok day
 
         for (int i = worstCaseLows.size() - 1; i >= 0; i--) {
-            if (worstCaseLows.get(i).getTempmin() < Plant.MOST_COLD_HEARTY_TEMP_TOLERANCE) {
+            if (worstCaseLows.get(i) < Plant.MOST_COLD_HEARTY_TEMP_TOLERANCE) {
                 firstOkDayMostTolerant = i + 1;
                 break;
             }
@@ -83,16 +57,15 @@ public class Forecaster {
     }
 
     private int getFirstOkDayMediumTolerant(Location newLocation) {
-        //make worst case low list
-        List<Day> worstCaseLows = new ArrayList<>();
-        worstCaseLows = newLocation.getWorstCaseLowTemps();
+        //get worst case low list
+        List<Double> worstCaseLows = newLocation.getWorstCaseLowsList();
 
         int firstOkDayMediumTolerant = 0;
 
         //find index of first ok day
 
         for (int i = worstCaseLows.size() - 1; i >= 0; i--) {
-            if (worstCaseLows.get(i).getTempmin() < Plant.MEDIUM_COLD_HEARTY_TEMP_TOLERANCE) {
+            if (worstCaseLows.get(i) < Plant.MEDIUM_COLD_HEARTY_TEMP_TOLERANCE) {
                 firstOkDayMediumTolerant = i + 1;
                 break;
             }
@@ -102,16 +75,15 @@ public class Forecaster {
     }
 
     private int getFirstOkDayLeastTolerant(Location newLocation) {
-        //make worst case low list
-        List<Day> worstCaseLows = new ArrayList<>();
-        worstCaseLows = newLocation.getWorstCaseLowTemps();
+        //get worst case low list
+        List<Double> worstCaseLows = newLocation.getWorstCaseLowsList();
 
         int firstOkDayLeastTolerant = 0;
 
         //find index of first ok day
 
         for (int i = worstCaseLows.size() - 1; i >= 0; i--) {
-            if (worstCaseLows.get(i).getTempmin() < Plant.LEAST_COLD_HEARTY_TEMP_TOLERANCE) {
+            if (worstCaseLows.get(i) < Plant.LEAST_COLD_HEARTY_TEMP_TOLERANCE) {
                 firstOkDayLeastTolerant = i + 1;
                 break;
             }
@@ -246,6 +218,7 @@ public class Forecaster {
             System.out.println();
 
             if (checkIfTooHotForMostColdTolerant(newLocation)) {
+                System.out.println();
                 System.out.println("However, the forecast after that is looking too hot for the most cold tolerant plants to thrive");
                 System.out.println();
             }

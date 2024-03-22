@@ -13,35 +13,32 @@ public class Location {
     private LocalDate avgLastFrostDate;
     private UpcomingForecast weatherForecastList;
 
-    private UpcomingForecast worstCaseForecastList;
+    private List<Double> worstCaseLowsList;
 
 
     private static Map<String, Location> regionMap = new HashMap<>();  //necessary?
 
-    private void setWorstCaseForecastList(UpcomingForecast weatherForecastList) {
-        this.worstCaseForecastList = 
-    }
-    public List<Day> getWorstCaseLowTemps() {
-        UpcomingForecast worstcase = new UpcomingForecast();
-        List<Day> worstCaseTempList = new ArrayList<>();
+    public List<Double> calculateWorstCaseLowTemps() {
+
+        List<Double> worstCaseTempList = new ArrayList<>();
 
         for (int i = 0; i < Forecaster.MOST_RELIABLE_FORECAST_DAYS; i++) {
             double worstCaseLow = weatherForecastList.getDays()[i].getTempmin() - Forecaster.TEMP_DELTA_MOST_RELIABLE;
-            worstCaseTempList.add(weatherForecastList.getDays()[i]);
-            worstCaseTempList.get(i).setTempmin(worstCaseLow);
+            worstCaseTempList.add(worstCaseLow);
         }
         for (int i = Forecaster.MOST_RELIABLE_FORECAST_DAYS; i < Forecaster.MEDIUM_RELIABLE_FORECAST_DAYS; i++) {
             double worstCaseTemp = weatherForecastList.getDays()[i].getTempmin() - Forecaster.TEMP_DELTA_MEDIUM_RELIABLE;
-            worstCaseTempList.add(weatherForecastList.getDays()[i]);
-            worstCaseTempList.get(i).setTempmin(worstCaseTemp);
+            worstCaseTempList.add(worstCaseTemp);
         }
         for (int i = Forecaster.MEDIUM_RELIABLE_FORECAST_DAYS; i < Forecaster.LEAST_RELIABLE_FORECAST_DAYS; i++) {
             double worstCaseTemp = weatherForecastList.getDays()[i].getTempmin() - Forecaster.TEMP_DELTA_LEAST_RELIABLE;
-            worstCaseTempList.add(weatherForecastList.getDays()[i]);
-            worstCaseTempList.get(i).setTempmin(worstCaseTemp);
+            worstCaseTempList.add(worstCaseTemp);
         }
-        worstcase.setDays(worstCaseTempList);
         return worstCaseTempList;
+    }
+
+    public List<Double> getWorstCaseLowsList() {
+        return worstCaseLowsList = calculateWorstCaseLowTemps();
     }
 
     public LocalDate getAvgLastFrostDate() {
@@ -81,11 +78,11 @@ public class Location {
         this.avgLastFrostDate = avgLastFrostDate;
 
     }
-    public Location(String zip, LocalDate avgLastFrostDay, UpcomingForecast forecast) {
+    public Location(String zip, LocalDate avgLastFrostDate, UpcomingForecast forecast) {
         this.zip = zip;
         this.avgLastFrostDate = avgLastFrostDate;
         this.weatherForecastList = forecast;
-
+        this.worstCaseLowsList = calculateWorstCaseLowTemps();
     }
 
 

@@ -66,6 +66,8 @@ private final WeatherStationService weatherStationService = new WeatherStationSe
             } else if (mainMenuSelection == 4) {
                 System.exit(1);
             }
+
+            consoleService.pause();
         }
 
     }
@@ -83,6 +85,10 @@ private final WeatherStationService weatherStationService = new WeatherStationSe
 
         //set forecast
         userLocation.setWeatherForecastList(upcomingForecastService.getForecast(zip));
+
+        //calculate List of worstCaseLows
+
+        userLocation.getWorstCaseLowsList();
 
         return userLocation;
     }

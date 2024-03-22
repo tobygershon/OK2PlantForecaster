@@ -1,9 +1,11 @@
 package toby.ok2plantProject.Service;
 
+import org.springframework.cglib.core.Local;
 import toby.ok2plantProject.Service.Models.Day;
 import toby.ok2plantProject.classes.Forecaster;
 import toby.ok2plantProject.classes.Location;
 
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class ConsoleService {
@@ -67,9 +69,9 @@ public class ConsoleService {
     }
 
     public void printWeatherForecast(Location newLocation) {
-        int forecastDay = 1;
+        int forecastDay = 0;
         for (Day day : newLocation.getWeatherForecastList().getDays()) {
-            System.out.println("Day " + forecastDay + ":");
+            System.out.println(LocalDate.now().plusDays(forecastDay).getDayOfWeek() + ", " + LocalDate.now().plusDays(forecastDay).getMonth() + " " + LocalDate.now().plusDays(forecastDay).getDayOfMonth());
             System.out.println("High Temp (F): " + day.getTempmax());
             System.out.println("Low Temp (F): " + day.getTempmin());
             System.out.println("Chance of Precipitation: " + day.getPrecipprob() + "%");
@@ -83,6 +85,12 @@ public class ConsoleService {
         System.out.println();
         System.out.println("Your area's average last frost date is " + newLocation.getAvgLastFrostDate().getMonth() + " " + newLocation.getAvgLastFrostDate().getDayOfMonth());
         System.out.println();
+    }
+
+    public void pause() {
+        System.out.println();
+        System.out.println("Press Enter to continue...");
+        scanner.nextLine();
     }
 
 
