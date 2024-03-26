@@ -1,5 +1,11 @@
 package toby.ok2plantProject;
 
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.jdbc.core.JdbcTemplate;
+import toby.ok2plantProject.Dao.UsersDao;
+import toby.ok2plantProject.Dao.jdbc.JdbcUsersDao;
 import toby.ok2plantProject.Service.*;
 import toby.ok2plantProject.Service.Models.LastFrostDate;
 import toby.ok2plantProject.Service.Models.ZipToLatLong;
@@ -11,15 +17,20 @@ import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class CommandLineApp {
+@SpringBootApplication
+public class CommandLineApp implements CommandLineRunner {
 
 private final ConsoleService consoleService = new ConsoleService();
 private final LastFrostDateService lastFrostDateService = new LastFrostDateService();
 private final UpcomingForecastService upcomingForecastService = new UpcomingForecastService();
 private final WeatherStationService weatherStationService = new WeatherStationService();
+private final UsersDao usersDao;
+
+public CommandLineApp(UsersDao userDao) {
+    this.usersDao = userDao;
+}
 
     public static void main(String[] args) {
-
 
         //Option 1: Build locations and regionMap from Database
 
@@ -37,8 +48,11 @@ private final WeatherStationService weatherStationService = new WeatherStationSe
 
               // run App
 
-        CommandLineApp newApp = new CommandLineApp();
-        newApp.run();
+
+//        CommandLineApp newApp = new CommandLineApp();
+//        newApp.run();
+
+        SpringApplication.run(CommandLineApp.class, args);
     }
 
     private void run() {
@@ -54,6 +68,8 @@ private final WeatherStationService weatherStationService = new WeatherStationSe
             if (mainMenuSelection == 1) {
                 //call forecaster
                 consoleService.printOK2PlantForecast(buildUserLocation(consoleService.promptForZipCode()));
+                String emailInput = consoleService.printEmailInput();
+                usersDao.createUser(emailInput);
 
             } else if (mainMenuSelection == 2) {
                 //print last frost date
@@ -94,5 +110,8 @@ private final WeatherStationService weatherStationService = new WeatherStationSe
     }
 
 
-
+    @Override
+    public void run(String... args) throws Exception {
+        run();
+    }
 }

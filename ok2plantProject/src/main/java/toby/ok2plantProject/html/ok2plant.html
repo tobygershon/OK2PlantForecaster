@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=BioRhyme:wght@800&display=swap" rel="stylesheet">
 
 </head>
+
 <body>
     <main>
         <div id="row1">
@@ -22,23 +24,27 @@
         </div>
         <h1>Welcome to the <br> OK 2 Plant Forecaster</h1>
         <form action="http://127.0.0.1:5501/html/ok2plant.html" method="Get">
-            <div>
+            <div id="zipInput" class="hidden">
                 <label for="zip">Search by Zip Code</label>
                 <input name="zip" id="zip" type="text" placeholder="5 digit zip code" required>
             </div>
-            <div>
-                <label for="email">Email</label>
-                <input type="email" name="email" id="email" placeholder="Email Address">
+            <div id="emailInput" class="">
+                <div id="emailDiv">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" placeholder="Example@example.com">
+                </div>
+                <div>
+                    <label for="follow-up">Would you like us to follow up<br> with an email in a week?</label>
+                    <input type="checkbox" name="follow-up" id="follow-up">
+                </div>
             </div>
+
             <div>
-                <label for="follow-up">Would you like us to follow up with an email in a week?</label>
-                <input type="checkbox" name="follow-up" id="follow-up">
-            </div>
-            <div>
-                <button type="submit">Submit</button>
+                <button id="btn" type="submit">Submit</button>
             </div>
         </form>
-</main>
+    </main>
 
 </body>
+
 </html>

@@ -87,21 +87,21 @@ public class Location {
 
 
     // methods to figure out if prediction is ok based on location dependent dates
-    private boolean isTimeToPredictMostColdHearty(Location location) {
+    public boolean isTimeToPredictMostColdHearty(Location location) {
 
-        if (LocalDate.now().plusDays(Forecaster.RELIABLE_FORECAST_DAYS + Plant.MOST_COLD_HEARTY_SOWING_TIME).isBefore(LocalDate.of(LocalDate.now().getYear(), location.getAvgLastFrostDate().getMonth(), location.getAvgLastFrostDate().getDayOfMonth()))) {
+        if (LocalDate.now().plusDays(Forecaster.RELIABLE_FORECAST_DAYS + Plant.MOST_COLD_HEARTY_SOWING_TIME).isAfter(LocalDate.of(LocalDate.now().getYear(), location.getAvgLastFrostDate().getMonth(), location.getAvgLastFrostDate().getDayOfMonth()))) {
             return false;
         }
         return true;
     }
-    private boolean isTimeToPredictMediumColdHearty(Location location) {
-        if (LocalDate.now().plusDays(Forecaster.RELIABLE_FORECAST_DAYS + Plant.MEDIUM_COLD_HEARTY_SOWING_TIME).isBefore(LocalDate.of(LocalDate.now().getYear(), location.getAvgLastFrostDate().getMonth(), location.getAvgLastFrostDate().getDayOfMonth()))) {
+    public boolean isTimeToPredictMediumColdHearty(Location location) {
+        if (LocalDate.now().plusDays(Forecaster.RELIABLE_FORECAST_DAYS + Plant.MEDIUM_COLD_HEARTY_SOWING_TIME).isAfter(LocalDate.of(LocalDate.now().getYear(), location.getAvgLastFrostDate().getMonth(), location.getAvgLastFrostDate().getDayOfMonth()))) {
             return false;
         }
         return true;
     }
-    private boolean isTimeToPredictLeastColdHearty(Location location) {
-        if (LocalDate.now().plusDays(Forecaster.RELIABLE_FORECAST_DAYS + Plant.LEAST_COLD_HEARTY_SOWING_TIME).isBefore(LocalDate.of(LocalDate.now().getYear(), location.getAvgLastFrostDate().getMonth(), location.getAvgLastFrostDate().getDayOfMonth()))) {
+    public boolean isTimeToPredictLeastColdHearty(Location location) {
+        if (LocalDate.now().plusDays(Forecaster.RELIABLE_FORECAST_DAYS + Plant.LEAST_COLD_HEARTY_SOWING_TIME).isAfter(LocalDate.of(LocalDate.now().getYear(), location.getAvgLastFrostDate().getMonth(), location.getAvgLastFrostDate().getDayOfMonth()))) {
             return false;
         }
         return true;

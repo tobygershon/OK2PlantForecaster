@@ -319,11 +319,15 @@ public class Forecaster {
         //       if least tolerant is ok to plant (i.e. first day ok index is found to be -1 meaning all
 //       days in worst case scenario were greater than least hearty tolerance)
 //       then, declare that the forecast looks fine to plant anything! (except warn that high temps too hot not good for some most cold tolerant)
+        if (newLocation.isTimeToPredictLeastColdHearty(newLocation)) {
+            getForecastLeastTolerant(newLocation);
+        } else if (newLocation.isTimeToPredictMediumColdHearty(newLocation)) {
+            getForecastMediumTolerant(newLocation);
+        } else if (newLocation.isTimeToPredictMostColdHearty(newLocation)) {
+            getForecastMostTolerant(newLocation);
+        } else {
 
-        getForecastLeastTolerant(newLocation);
-        getForecastMediumTolerant(newLocation);
-        getForecastMostTolerant(newLocation);
-
+        }
 //        add separate methods for precip forecast?
 
 

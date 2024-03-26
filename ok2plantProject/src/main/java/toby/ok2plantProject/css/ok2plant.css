@@ -1,9 +1,7 @@
- 
- 
  body {
 
-   background: rgb(81, 77, 86) top/cover no-repeat url("../../../../resources/garden.jpg");
-   /* background-size: 5%; */
+    background: rgb(81, 77, 86) top/cover url("../../../../resources/garden.jpg") no-repeat;
+    /* background-size: 5%; */
     /* height: 100%; */
     /* display: grid; */
     min-height: 100vh;
@@ -13,38 +11,165 @@
 
 
  main {
-   display: grid;
-   grid-template-columns: 1fr 2fr 1fr;
-   grid-template-rows: 1fr 2fr 2fr;
-   grid-template-areas: "row1 row1 row1"
-                        ". header ."
-                        ". form .";
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 1fr 2fr 2fr;
+    grid-template-areas: "row1 row1 row1"
+       ". header ."
+       ". form .";
 
  }
 
-form {
-   grid-area: form;
-}
+ form {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    grid-area: form;
+    font-family: "BioRhyme", Arial, Helvetica, sans-serif;
+    text-align: center;
+    text-transform: capitalize;
+    font-size: 1rem;
+    color: rgb(255, 249, 226)
+ }
 
-#row1 {
-   grid-area: row1;
-   height: 6rem;
-}
+ #zipInput,
+ #emailInput {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+ }
+
+ #emailDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+ }
+
+ #email,
+ #zip {
+    background-color: rgb(255, 249, 226);
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    font-family: "BioRhyme", Arial, Helvetica, sans-serif;
+    text-transform: capitalize;
+ }
+
+ #row1 {
+    grid-area: row1;
+    height: 6rem;
+ }
 
 
  h1 {
-   grid-area: header;
-   font-family: "BioRhyme", Arial, Helvetica, sans-serif;
+    grid-area: header;
+    font-family: "BioRhyme", Arial, Helvetica, sans-serif;
     text-align: center;
     text-transform: capitalize;
     font-size: 1.75rem;
-    color: rgb(250, 246, 231)
+    color: rgb(255, 249, 226);
+ }
+
+
+ #emailInput.hidden,
+ #zipInput.hidden {
+    display: none;
+ }
+
+ #btn {
+    background-color: rgb(153, 119, 184);
+    color: rgb(255, 249, 226);
+    border-radius: 5px;
+    border: solid 1px rgb(255, 249, 226);
+    padding: 5px 10px;
+    font-family: "BioRhyme", Arial, Helvetica, sans-serif;
+    text-align: center;
+    text-transform: capitalize;
+ }
+
+ #btn:hover {
+   background-color: rgb(142, 94, 186);
  }
 
  @media only screen and (max-width: 768px) {
-   body {
-      
-   background: rgb(33, 31, 35) center/cover url("../../../../resources/seedling.jpg") no-repeat;
-   min-height: 100vh;
+    body {
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       background: rgb(33, 31, 35) center/cover url("../../../../resources/seedling.jpg") no-repeat;
+       min-height: 100vh;
+    }
+
+    main {
+       grid-template-columns: 1fr;
+       grid-template-rows: 1fr 15% 1fr;
+       grid-template-areas: "header"
+          "."
+          "form";
+    }
+    h1 {
+      font-size: 4rem;
    }
- } 
+
+   form {
+      font-size: 2.75rem;
+   }
+   
+   #zipInput, #emailInput {
+
+   }
+
+   #zipInput label {
+     margin-bottom: 20px;
+   }
+
+   #email, #zip {
+      border-radius: 5px;
+      font-family: "BioRhyme", Arial, Helvetica, sans-serif;
+      /* text-align: center; */
+      text-transform: capitalize;
+      padding: 10px 30px;
+      font-size: 1.75rem;
+   }
+   #btn {
+     padding: 10px 100px;
+     font-size: 1.75rem;
+     border-radius: 2.5px;
+   }
+ }
+
+ @media only screen and (max-width: 500px) {
+
+    h1 {
+       font-size: 2.5rem;
+    }
+
+    form {
+       font-size: 1.75rem;
+    }
+
+    #zipInput, #emailInput {
+
+    }
+
+    #zipInput label {
+      margin-bottom: 10px;
+    }
+
+    #email, #zip {
+       border-radius: 5px;
+       font-family: "BioRhyme", Arial, Helvetica, sans-serif;
+       /* text-align: center; */
+       text-transform: capitalize;
+       padding: 10px 15px;
+       font-size: 1.1rem;
+    }
+    #btn {
+      padding: 0 50px;
+      font-size: 1.5rem;
+      border-radius: 1px;
+    }
+ }

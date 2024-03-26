@@ -6,6 +6,7 @@ import toby.ok2plantProject.classes.Forecaster;
 import toby.ok2plantProject.classes.Location;
 
 import java.time.LocalDate;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class ConsoleService {
@@ -85,6 +86,46 @@ public class ConsoleService {
         System.out.println();
         System.out.println("Your area's average last frost date is " + newLocation.getAvgLastFrostDate().getMonth() + " " + newLocation.getAvgLastFrostDate().getDayOfMonth());
         System.out.println();
+    }
+
+    public String printEmailInput() {
+        System.out.println();
+        System.out.println("Would you like us to send forecast updates to your email?");
+        System.out.println();
+        System.out.println("Please choose yes(Y) or no(N)");
+
+        String userInput = scanner.nextLine();
+
+//        if (userInput == null) {
+//            System.out.println("Invalid input");
+//        } else if (!userInput.toLowerCase().equals('y') && !userInput.toLowerCase().equals('n')) {
+//            System.out.println("Please enter a Y or an N only");
+//            userInput = scanner.nextLine();
+//        }
+
+        if (userInput.toLowerCase().equals("y")) {
+            return retrieveEmail();
+
+        } else if (userInput.toLowerCase().equals("n")) {
+            System.out.println();
+            System.out.println("Thanks for coming to the OK 2 Plant Forecaster.  Check back in again soon!");
+        }
+        return null;
+    }
+
+    private String retrieveEmail() {
+        System.out.println();
+        System.out.println("Please enter your email");
+
+        String userEmail = scanner.nextLine();
+
+        if (userEmail == null) {
+            System.out.println("Invalid entry");
+        } else {
+            System.out.println("Thank you!  We'll update you soon!");
+        }
+
+        return userEmail;
     }
 
     public void pause() {
