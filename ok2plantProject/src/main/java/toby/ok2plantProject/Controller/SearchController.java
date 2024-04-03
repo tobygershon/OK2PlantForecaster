@@ -1,6 +1,8 @@
 package toby.ok2plantProject.Controller;
 
+import org.apache.tomcat.jni.Local;
 import org.springframework.web.bind.annotation.*;
+import toby.ok2plantProject.FrontEnd.DTOModels.ForecastResponseDTO;
 import toby.ok2plantProject.Service.LastFrostDateService;
 import toby.ok2plantProject.Service.Models.ZipToLatLong;
 import toby.ok2plantProject.Service.UpcomingForecastService;
@@ -11,7 +13,6 @@ import toby.ok2plantProject.classes.Location;
 import java.time.LocalDate;
 
 @RestController
-@RequestMapping("/html/ok2plant.html/")
 @CrossOrigin
 public class SearchController {
 
@@ -20,15 +21,23 @@ public class SearchController {
     private final UpcomingForecastService upcomingForecastService = new UpcomingForecastService();
     private final WeatherStationService weatherStationService = new WeatherStationService();
 
-    @GetMapping("{zip}/OK2PlantDate")
-    public String getOK2PlantDate(@PathVariable String zip) {
-        String ok2PlantDate = "";
+    @GetMapping("/OK2PlantDate/{zip}")
+    public ForecastResponseDTO getOK2PlantDate(@PathVariable String zip) {
+        ForecastResponseDTO forecastResponseDTO = new ForecastResponseDTO();
 
         Location newLocation = buildUserLocation(zip);
+//
+        int okDay = forecaster.getFirstOkDayLeastTolerant(newLocation);
+        LocalDate baseDate = LocalDate.now().plusDays(okDay);
 
-        forecaster.getForecast(newLocation);
+        forecastResponseDTO.setOk2PlantDate(baseDate.getDayOfWeek() + ", " + baseDate.getMonth() + " " + baseDate.getDayOfMonth());
 
-        return ok2PlantDate;
+        LocalDate lastFrost = newLocation.getAvgLastFrostDate();
+
+        forecastResponseDTO.setLastFrostDate(lastFrost.getDayOfWeek() + ", " + lastFrost.getMonth() + " " + lastFrost.getDayOfMonth());
+
+        //return ok2PlantDate
+        return forecastResponseDTO;
     }
 
 

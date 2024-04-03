@@ -74,7 +74,7 @@ public class Forecaster {
         return firstOkDayMediumTolerant;
     }
 
-    private int getFirstOkDayLeastTolerant(Location newLocation) {
+    public int getFirstOkDayLeastTolerant(Location newLocation) {
         //get worst case low list
         List<Double> worstCaseLows = newLocation.getWorstCaseLowsList();
 
