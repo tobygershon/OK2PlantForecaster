@@ -18,6 +18,7 @@ public class UpcomingForecastService {
     public ZipToLatLong getLatAndLongFromZip(String zip) {
         String url = API_BASE_URL + zip + forecastQuery;
         return restTemplate.getForObject(url, ZipToLatLong.class);
+
     }
 
 }

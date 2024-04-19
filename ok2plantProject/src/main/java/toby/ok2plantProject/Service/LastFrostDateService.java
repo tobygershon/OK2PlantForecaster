@@ -14,6 +14,7 @@ public class LastFrostDateService {
     private RestTemplate restTemplate = new RestTemplate();
 
     public LocalDate getLastFrostDate(int station) {
+
         String url = API_BASE_URL + station + END_URL;
         LastFrostDate[] array = restTemplate.getForObject(url, LastFrostDate[].class);
         String lastFrost = array[0].getLastFrostDate();

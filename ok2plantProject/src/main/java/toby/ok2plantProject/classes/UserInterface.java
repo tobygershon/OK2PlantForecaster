@@ -17,6 +17,7 @@ public class UserInterface {
     public void mainMenu() {
         boolean returnToMain = true;
 
+//        Commented out Below when front end was built
 
 //        System.out.println();
 //        System.out.println("**************************************");

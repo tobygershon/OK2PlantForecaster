@@ -22,17 +22,21 @@
     <main>
         <div id="row1">
             <div>
-                <p id="information" class="hidden">The OK 2 Plant Forecaster analyzes your area's weather forecast to inform you when it's safe to plant.<br>  Too early, and you risk cold temperatures damaging your young plants.  Too late, and many cold tolerant vegetables can't tolerate the heat. </p>
+                <p id="information" class="hidden">The OK 2 Plant Forecaster analyzes your area's weather forecast to
+                    inform you when it's safe to plant.<br> Too early, and you risk cold temperatures damaging your
+                    young plants. Too late, and many cold tolerant vegetables can't tolerate the heat. </p>
             </div>
             <div id="response" class="hidden">
                 <div id="dates">
                     <div id="lastFrost">
                         <h3>Your area's average last frost is <span id="frostDate"></span></h3>
-                        <p>The forecaster uses this date as a starting point.  But without analyzing the future forecast, it's not safe to plant just yet!</p>
+                        <p>The forecaster uses this date as a starting point. But without analyzing the future forecast,
+                            it's not safe to plant just yet!</p>
                     </div>
                     <div id="ok2Plant">
                         <h3 id="ok2Plant">Your OK 2 Plant date is <span id="okDate"></span></h3>
-                        <p>The forecast can change, so just to be safe enter your email address below and we'll update you in a week to make sure you're still OK 2 Plant!</p>
+                        <p id="message">The forecast can change, so just to be safe enter your email address below and
+                            we'll update you in a week to make sure you're still OK 2 Plant!</p>
                     </div>
                 </div>
             </div>
@@ -56,7 +60,12 @@
             </div>
 
             <div>
-                <button id="btn" type="submit">Submit</button>
+                <button id="btn" type="submit">Submit Zip Code</button>
+                <div id="emailButtons" class="hidden">
+                    <button id="emailBTN" type="button">Submit Email</button>
+                    <button id="noThanks">No Thanks</button>
+                </div>
+
             </div>
         </form>
     </main>

@@ -143,12 +143,12 @@ h3, p {
  }
 
 
- #emailInput.hidden,
- #zipInput.hidden, p.hidden, #information.hidden, #response.hidden {
+ #emailInput.hidden, #btn.hidden, #emailBTN.hidden,
+ #zipInput.hidden, p.hidden, #information.hidden, #response.hidden, #emailButtons.hidden {
     display: none;
  }
 
- #btn {
+ #btn, #emailBTN, #noThanks {
     background-color: rgb(153, 119, 184);
     color: rgb(255, 249, 226);
     border-radius: 5px;
@@ -159,11 +159,10 @@ h3, p {
     text-transform: capitalize;
  }
 
- #btn:hover {
+ #btn:hover, #emailBTN:hover, #noThanks:hover {
    background-color: rgb(142, 94, 186);
    cursor: pointer;
  }
-
 
 
  @media only screen and (max-width: 768px) {

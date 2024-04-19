@@ -4,7 +4,10 @@ drop table if exists users, search_data, zip_map;
 
 create table users (
     user_id serial primary key,
-    email varchar(50) NOT NULL unique
+    email varchar(50) NOT NULL unique,
+    ok2plant_date varchar(30),
+    search_date date default current_date NOT NULL,
+    request_follow_up boolean default false
 );
 
 create table search_data (

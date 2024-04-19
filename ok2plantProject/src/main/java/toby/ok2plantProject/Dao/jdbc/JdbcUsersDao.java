@@ -22,14 +22,14 @@ public class JdbcUsersDao implements UsersDao {
     }
 
     @Override
-    public int createUser(String email) {
+    public int createUser(String email, String ok2PlantDate, boolean wantsFollowUp) {
         int returnedUserId = 0;
 
-        String sql = "insert into users (email) " +
-                "values (?) returning user_id";
+        String sql = "insert into users (email, ok2plant_date, request_follow_up) " +
+                "values (?, ?, ?) returning user_id";
 
         try {
-            returnedUserId = jdbcTemplate.queryForObject(sql, int.class, email);
+            returnedUserId = jdbcTemplate.queryForObject(sql, int.class, email, ok2PlantDate, wantsFollowUp);
 
             if (returnedUserId == 0) {
                 System.out.println("didn't work");

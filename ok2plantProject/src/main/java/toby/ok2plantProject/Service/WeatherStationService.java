@@ -8,6 +8,8 @@ public class WeatherStationService {
         private final RestTemplate restTemplate = new RestTemplate();
 
         public int getStation(double latitude, double longitude) {
+
+
             String url = API_BASE_URL + "lat=" + latitude + "&lon=" + longitude;
             WeatherStation[] array = restTemplate.getForObject(url, WeatherStation[].class);
             int station = Integer.parseInt(array[0].getId());

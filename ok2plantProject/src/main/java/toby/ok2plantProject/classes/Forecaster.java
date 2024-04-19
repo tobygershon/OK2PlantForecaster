@@ -1,5 +1,6 @@
 package toby.ok2plantProject.classes;
 
+import toby.ok2plantProject.FrontEnd.DTOModels.ForecastResponseDTO;
 import toby.ok2plantProject.Service.Models.Day;
 
 import java.time.LocalDate;
@@ -31,6 +32,18 @@ public class Forecaster {
 
     public int getLEAST_RELIABLE_FORECAST_DAYS() {
         return LEAST_RELIABLE_FORECAST_DAYS;
+    }
+
+    public int getPRECIP_MOST_RELIABLE_CUTOFF() {
+        return PRECIP_MOST_RELIABLE_CUTOFF;
+    }
+
+    public int getPRECIP_MEDIUM_RELIABLE_CUTOFF() {
+        return PRECIP_MEDIUM_RELIABLE_CUTOFF;
+    }
+
+    public int getPRECIP_LEAST_RELIABLE_CUTOFF() {
+        return PRECIP_LEAST_RELIABLE_CUTOFF;
     }
 
     //methods
@@ -311,8 +324,71 @@ public class Forecaster {
     }
 
 
-    // if isTimeToPredict = true
-    //
+    public ForecastResponseDTO getForecastFrontEnd(Location newLocation) {
+        int firstOkDay = 100;
+        ForecastResponseDTO response = new ForecastResponseDTO();
+
+        response.setLastFrostDate(newLocation.getAvgLastFrostDate().toString());
+
+        if (newLocation.isTimeToPredictLeastColdHearty(newLocation)) {
+            firstOkDay = getFirstOkDayLeastTolerant(newLocation);
+            if (firstOkDay == 0) {
+                response.setMessage("The forecast looks great going forward!  All summer crops are ok 2 plant!");
+            } else if (firstOkDay == 14) {
+                firstOkDay = getFirstOkDayMostTolerant(newLocation);
+                if (firstOkDay == 0) {
+                    response.setMessage("The forecast isn't looking good for moderate cold tolerant plants.  But you can plant the most cold hearty crops at any time!");
+                } else if (firstOkDay == 14) {
+                    response.setMessage("The forecast isn't looking good even for the most cold hearty crops.  Check back in a week.");
+                } else {
+                    response.setMessage("The forecast isn't looking good for moderate cold tolerant plants.  But the most cold hearty plants can be planted after the ok 2 plant date");
+                }
+            } else {
+                response.setMessage("You should be ok 2 plant any crops after this date.  The forecast can change though, so check back in again before planting to make sure.");
+            }
+        } else if (newLocation.isTimeToPredictMediumColdHearty(newLocation)) {
+            firstOkDay = getFirstOkDayMediumTolerant(newLocation);
+
+            if (firstOkDay == 0) {
+                response.setMessage("The forecast looks great going forward for cold tolerant plants.  Check back in for summer crops when the temperatures warm up.");
+            } else if (firstOkDay == 14) {
+                firstOkDay = getFirstOkDayMostTolerant(newLocation);
+                if (firstOkDay == 0) {
+                    response.setMessage("The forecast isn't looking good for moderate cold tolerant plants.  But you can plant the most cold hearty crops at any time!");
+                } else if (firstOkDay == 14) {
+                    response.setMessage("The forecast isn't looking good even for the most cold hearty crops.  Check back in a week.");
+                } else {
+                    response.setMessage("The forecast isn't looking good for moderate cold tolerant plants.  But the most cold hearty plants can be planted after the ok 2 plant date");
+                }
+                } else {
+                response.setMessage("This is your ok 2 plant date for cold tolerant crops, but it's still too cold for summer crops.  Check back in in a week or two.");
+            }
+        } else if (newLocation.isTimeToPredictMostColdHearty(newLocation)) {
+                firstOkDay = getFirstOkDayMostTolerant(newLocation);
+            if (firstOkDay == 0) {
+
+                response.setMessage("The forecast looks great for the most cold hearty crops, but it's still too early to predict for others");
+            } else if (firstOkDay == 14) {
+                response.setMessage("The forecast isn't looking good even for the most cold hearty crops.  Check back in a week.");
+            } else {
+                response.setMessage("This ok 2 plant date is only for the Most Cold Hearty crops.  check back in a few weeks for other crops");
+            }
+            } else {
+            response.setMessage("It's too early to predict even for the most cold hearty plants.  Submit your email and we'll send a message when it's time to check!");
+
+        }
+        String responseDate = LocalDate.now().plusDays(firstOkDay).getDayOfWeek() + ", " + LocalDate.now().plusDays(firstOkDay).getMonth() + " " + LocalDate.now().plusDays(firstOkDay).getDayOfMonth();
+        if (firstOkDay == 100) {
+            response.setOk2PlantDate("Sorry, too Early to forecast");
+        } else {
+            response.setOk2PlantDate(responseDate);
+        }
+        return response;
+    }
+
+
+//    getForecast method for command line app below
+
     public void getForecast(Location newLocation) {
 //       take in location, calculate worst case low temps, find ideal day
 
@@ -325,8 +401,6 @@ public class Forecaster {
             getForecastMediumTolerant(newLocation);
         } else if (newLocation.isTimeToPredictMostColdHearty(newLocation)) {
             getForecastMostTolerant(newLocation);
-        } else {
-
         }
 //        add separate methods for precip forecast?
 

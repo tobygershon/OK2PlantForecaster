@@ -18,23 +18,22 @@ public class Location {
 
     private static Map<String, Location> regionMap = new HashMap<>();  //necessary?
 
-    public List<Double> calculateWorstCaseLowTemps() {
 
-        List<Double> worstCaseTempList = new ArrayList<>();
+    public Location() {
+    }
+    public Location(String zip) {
+        this.zip = zip;
+    }
+    public Location(String zip, LocalDate avgLastFrostDate) {
+        this.zip = zip;
+        this.avgLastFrostDate = avgLastFrostDate;
 
-        for (int i = 0; i < Forecaster.MOST_RELIABLE_FORECAST_DAYS; i++) {
-            double worstCaseLow = weatherForecastList.getDays()[i].getTempmin() - Forecaster.TEMP_DELTA_MOST_RELIABLE;
-            worstCaseTempList.add(worstCaseLow);
-        }
-        for (int i = Forecaster.MOST_RELIABLE_FORECAST_DAYS; i < Forecaster.MEDIUM_RELIABLE_FORECAST_DAYS; i++) {
-            double worstCaseTemp = weatherForecastList.getDays()[i].getTempmin() - Forecaster.TEMP_DELTA_MEDIUM_RELIABLE;
-            worstCaseTempList.add(worstCaseTemp);
-        }
-        for (int i = Forecaster.MEDIUM_RELIABLE_FORECAST_DAYS; i < Forecaster.LEAST_RELIABLE_FORECAST_DAYS; i++) {
-            double worstCaseTemp = weatherForecastList.getDays()[i].getTempmin() - Forecaster.TEMP_DELTA_LEAST_RELIABLE;
-            worstCaseTempList.add(worstCaseTemp);
-        }
-        return worstCaseTempList;
+    }
+    public Location(String zip, LocalDate avgLastFrostDate, UpcomingForecast forecast) {
+        this.zip = zip;
+        this.avgLastFrostDate = avgLastFrostDate;
+        this.weatherForecastList = forecast;
+        this.worstCaseLowsList = calculateWorstCaseLowTemps();
     }
 
     public List<Double> getWorstCaseLowsList() {
@@ -65,52 +64,63 @@ public class Location {
         this.weatherForecastList = weatherForecastList;
     }
 
-    //Constructors
 
-    public Location() {
-    }
 
-    public Location(String zip) {
-        this.zip = zip;
-    }
-    public Location(String zip, LocalDate avgLastFrostDate) {
-        this.zip = zip;
-        this.avgLastFrostDate = avgLastFrostDate;
+    public List<Double> calculateWorstCaseLowTemps() {
 
-    }
-    public Location(String zip, LocalDate avgLastFrostDate, UpcomingForecast forecast) {
-        this.zip = zip;
-        this.avgLastFrostDate = avgLastFrostDate;
-        this.weatherForecastList = forecast;
-        this.worstCaseLowsList = calculateWorstCaseLowTemps();
-    }
+        List<Double> worstCaseTempList = new ArrayList<>();
 
+        for (int i = 0; i < Forecaster.MOST_RELIABLE_FORECAST_DAYS; i++) {
+            double worstCaseLow = weatherForecastList.getDays()[i].getTempmin() - Forecaster.TEMP_DELTA_MOST_RELIABLE;
+            worstCaseTempList.add(worstCaseLow);
+        }
+        for (int i = Forecaster.MOST_RELIABLE_FORECAST_DAYS; i < Forecaster.MEDIUM_RELIABLE_FORECAST_DAYS; i++) {
+            double worstCaseTemp = weatherForecastList.getDays()[i].getTempmin() - Forecaster.TEMP_DELTA_MEDIUM_RELIABLE;
+            worstCaseTempList.add(worstCaseTemp);
+        }
+        for (int i = Forecaster.MEDIUM_RELIABLE_FORECAST_DAYS; i < Forecaster.LEAST_RELIABLE_FORECAST_DAYS; i++) {
+            double worstCaseTemp = weatherForecastList.getDays()[i].getTempmin() - Forecaster.TEMP_DELTA_LEAST_RELIABLE;
+            worstCaseTempList.add(worstCaseTemp);
+        }
+        return worstCaseTempList;
+    }
 
     // methods to figure out if prediction is ok based on location dependent dates
     public boolean isTimeToPredictMostColdHearty(Location location) {
 
-        if (LocalDate.now().plusDays(Forecaster.RELIABLE_FORECAST_DAYS + Plant.MOST_COLD_HEARTY_SOWING_TIME).isAfter(LocalDate.of(LocalDate.now().getYear(), location.getAvgLastFrostDate().getMonth(), location.getAvgLastFrostDate().getDayOfMonth()))) {
-            return false;
+//        if (LocalDate.now().plusDays(Forecaster.RELIABLE_FORECAST_DAYS + Plant.MOST_COLD_HEARTY_SOWING_TIME).isAfter(LocalDate.of(LocalDate.now().getYear(), location.getAvgLastFrostDate().getMonth(), location.getAvgLastFrostDate().getDayOfMonth()))) {
+//            return true;
+//        }
+//        hardcoded for demo due to web API failure
+        if (LocalDate.now().plusDays(Forecaster.RELIABLE_FORECAST_DAYS + Plant.MOST_COLD_HEARTY_SOWING_TIME).isAfter(LocalDate.now().minusDays(1))) {
+            return true;
         }
-        return true;
+        return false;
     }
     public boolean isTimeToPredictMediumColdHearty(Location location) {
-        if (LocalDate.now().plusDays(Forecaster.RELIABLE_FORECAST_DAYS + Plant.MEDIUM_COLD_HEARTY_SOWING_TIME).isAfter(LocalDate.of(LocalDate.now().getYear(), location.getAvgLastFrostDate().getMonth(), location.getAvgLastFrostDate().getDayOfMonth()))) {
-            return false;
+//        if (LocalDate.now().plusDays(Forecaster.RELIABLE_FORECAST_DAYS + Plant.MEDIUM_COLD_HEARTY_SOWING_TIME).isAfter(LocalDate.of(LocalDate.now().getYear(), location.getAvgLastFrostDate().getMonth(), location.getAvgLastFrostDate().getDayOfMonth()))) {
+//            return true;
+//        }
+        if (LocalDate.now().plusDays(Forecaster.RELIABLE_FORECAST_DAYS + Plant.MEDIUM_COLD_HEARTY_SOWING_TIME).isAfter(LocalDate.now().minusDays(1))) {
+            return true;
         }
-        return true;
+        return false;
     }
     public boolean isTimeToPredictLeastColdHearty(Location location) {
-        if (LocalDate.now().plusDays(Forecaster.RELIABLE_FORECAST_DAYS + Plant.LEAST_COLD_HEARTY_SOWING_TIME).isAfter(LocalDate.of(LocalDate.now().getYear(), location.getAvgLastFrostDate().getMonth(), location.getAvgLastFrostDate().getDayOfMonth()))) {
-            return false;
+//        if (LocalDate.now().plusDays(Forecaster.RELIABLE_FORECAST_DAYS + Plant.LEAST_COLD_HEARTY_SOWING_TIME).isAfter(LocalDate.of(LocalDate.now().getYear(), location.getAvgLastFrostDate().getMonth(), location.getAvgLastFrostDate().getDayOfMonth()))) {
+//            return true;
+//        }
+        if (LocalDate.now().plusDays(Forecaster.RELIABLE_FORECAST_DAYS + Plant.LEAST_COLD_HEARTY_SOWING_TIME).isAfter(LocalDate.now().minusDays(1))) {
+            return true;
         }
-        return true;
+        return false;
     }
 
 
 
 
-    // methods to build Locations from csv and region map
+    // methods to build Locations from csv files for testing purposes before API was connected
+
     //fields don't match up in Location constructor due to changes made after mapping API data compared to csv files that were read in
 
 //    public static void buildLocationAndRegionMap(File newFile) {
